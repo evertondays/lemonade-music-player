@@ -1,0 +1,79 @@
+:root {
+  --background: #15161B;
+  --background-dark: #1D1E25;
+  --primary: #00e88f;
+  --white: #FFF;
+
+  font-size: 60%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body{
+  height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:visited{
+  text-decoration: none;
+}
+
+a:link{
+  text-decoration: none;
+}
+
+a:active{
+  text-decoration: none;
+}
+
+input, select, button, textarea:focus{
+  outline: none;
+}
+
+body {
+  background: var(--background);
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: var(--white);
+}
+
+@media (min-width: 700px) {
+  :root {
+    font-size: 62.5%;
+  }
+}
+
+/* Ajuda para o JS */
+.invisible{
+  display: none;
+}
+
+.invisible-important{
+  display: none !important;
+}
+
+.inline-display{
+  display: inline !important;
+}
+
+.grid-display{
+  display: grid !important;
+}
+
+.flex-display{
+  display: flex !important;
+}

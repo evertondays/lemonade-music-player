@@ -1,0 +1,36 @@
+.slider-container{
+  width: 800px;
+  margin: 0 10px;
+}
+
+.slider{
+  -webkit-appearance: none;
+  height: 7px;
+  background: linear-gradient(90deg, rgb(140,140,151) 60%, rgb(140,140,151) 60%);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.slider:focus {
+  outline: none;
+}
+
+/* Chrome */
+.slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Firefox */
+.slider::-moz-range-thumb{
+  width: 17px;
+  height: 17px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
