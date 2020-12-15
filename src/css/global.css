@@ -14,6 +14,7 @@
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering:  optimizeLegibility;
 }
 
 html,
@@ -25,17 +26,11 @@ body{
 
 a{
   text-decoration: none;
+  cursor: pointer;
+  color: inherit;
 }
 
-a:visited{
-  text-decoration: none;
-}
-
-a:link{
-  text-decoration: none;
-}
-
-a:active{
+a:visited, a:active, a:link, a:hover{
   text-decoration: none;
 }
 
