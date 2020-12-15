@@ -5,44 +5,31 @@ import
 		FaTimes
 	} 
 from 'react-icons/fa';
+import convertSegMin from '../utils/convertSegMin';
 
 import '../css/components/player.css';
 import '../css/range.css';
 
-import ImgTest from '../assets/images/índice.jpeg';
 
 function Player() {
-
-	function convertSegMin(seg){
-		seg = seg.toFixed(0);
-	
-		var min = (seg / 60);
-		min = Math.floor(min);
-	
-		var res = seg % 60;
-		if (res < 10) {
-			res = "0" + res;
-		}
-	
-		return `${min}:${res}`;
-	}
-
 	const audio = useRef(null);
 
 	const [player, setPlayer] = useState({
 		playing: false,
 		time: 0,
 		timeInSeconds: '0:00',
-		totalTimeInSeconds: '-:--',
+		totalTimeInSeconds: '0:00',
 		volume: 0.75,
 		muted: false,
 	});
 
-	const [media, setMedia] = useState('https://nerdcast-cdn.jovemnerd.com.br/nerdcast_747_the_boys_2_explodindo_cabecas.mp3');
-	useEffect(() => {
-		let totalTimeInSeconds = convertSegMin(audio.current.duration);
-		setPlayer({...player, totalTimeInSeconds});
-	},[media.playing]);
+	const [media, setMedia] = useState({
+		name: 'Um Brinde Pra Nós',
+		artist: 'Hungria Hip Hop',
+		album: 'Hungria vol. 4',
+		image: 'https://statig1.akamaized.net/bancodeimagens/6j/yv/mx/6jyvmx9n8o0fpsnd2c9uq30tt.jpg',
+		file: 'http://localhost:3333/song/0d64c33553713870b403b591fab3e940.mp3',
+	});
 
 	const [infoShow, setInfoShow] = useState(false);
 	const [volumeShow, setVolumeShow] = useState(false);
@@ -72,10 +59,11 @@ function Player() {
 	}
 
 	function updateTime(){
+		let totalTimeInSeconds = convertSegMin(audio.current.duration);
 		let time = audio.current.currentTime / (audio.current.duration / 100);
 		let timeInSeconds = convertSegMin(audio.current.currentTime);
 
-		setPlayer({...player, time, timeInSeconds});
+		setPlayer({...player, time, timeInSeconds, totalTimeInSeconds});
 	}
 
 	function userSetTime(event){
@@ -93,7 +81,7 @@ function Player() {
 		setPlayer({...player, muted});
 	}
 
-	// Funções de exibição (paro o layout responsivo)
+	// Funções de exibição (para o layout responsivo)
 	function showInfo(){
 		let infos = document.querySelector('#player-container .infos');
 
@@ -127,17 +115,17 @@ function Player() {
 
 	return (
 		<>
-			<div className="name-info">Nothing Else Matters - Metallica</div>
+			<div className="name-info">{ media.name } - { media.artist }</div>
 			<div id="player-container">
 				{/* Informações PLUS */}
 				<div className="infos-container">
 					<button className="show-info-button" onClick={showInfo}><FaInfoCircle size={18} /></button>
 					<div className="infos">
-						<img src={ImgTest} alt="The Black Album" />
+						<img src={media.file} alt={ media.album } />
 						<div className="info-text">
-							<h1>Nothing Else Matters</h1>
-							<h2>Metallica</h2>
-							<h3>The Black Album</h3>
+							<h1>{ media.name }</h1>
+							<h2>{ media.artist }</h2>
+							<h3>{ media.album }</h3>
 						</div>
 					</div>
 				</div>
@@ -193,7 +181,7 @@ function Player() {
 
 				{/* audio tag */}
 				<audio ref={audio} onTimeUpdate={updateTime}>
-					<source src={media} type="audio/ogg" />
+					<source src={media.file} type="audio/ogg" />
 				</audio>
 			</div>
 		</>
