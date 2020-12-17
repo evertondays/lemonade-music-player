@@ -7,12 +7,10 @@ import
 from 'react-icons/fa';
 import convertSegMin from '../utils/convertSegMin';
 
-import Home from '../pages/Home';
-
 import '../css/components/player.css';
 import '../css/range.css';
 
-function Player() {
+function Player(props) {
 	const audio = useRef(null);
 
 	const [player, setPlayer] = useState({
@@ -24,14 +22,6 @@ function Player() {
 		muted: false,
 	});
 
-	const [media, setMedia] = useState({
-		name: 'Um Brinde Pra Nóssss',
-		artist: 'Hungria Hip Hop',
-		album: 'Hungria vol. 4',
-		image: 'https://statig1.akamaized.net/bancodeimagens/6j/yv/mx/6jyvmx9n8o0fpsnd2c9uq30tt.jpg',
-		file: 'http://localhost:3333/song/0d64c33553713870b403b591fab3e940.mp3'
-	});
-
 	const [infoShow, setInfoShow] = useState(false);
 	const [volumeShow, setVolumeShow] = useState(false);
 
@@ -39,7 +29,7 @@ function Player() {
 	useEffect(() => {
 		setPlayer({...player, time: 0, totalTimeInSeconds: '0:00', timeInSeconds: '0:00'});
 		audio.current.currentTime =  0;
-	},[media]);
+	},[props.media]);
 
 	// Playing effect
 	useEffect(() => {
@@ -127,18 +117,17 @@ function Player() {
 
 	return (
 		<>
-			<Home setMedia={setMedia} />
-			<div className="name-info">{ media.name } - { media.artist }</div>
+			<div className="name-info">{ props.media.name } - { props.media.artist }</div>
 			<div id="player-container">
 				{/* Informações PLUS */}
 				<div className="infos-container">
 					<button className="show-info-button" onClick={showInfo}><FaInfoCircle size={18} /></button>
 					<div className="infos">
-						<img src={media.file} alt={ media.album } />
+						<img src={props.media.file} alt={ props.media.album } />
 						<div className="info-text">
-							<h1>{ media.name }</h1>
-							<h2>{ media.artist }</h2>
-							<h3>{ media.album }</h3>
+							<h1>{ props.media.name }</h1>
+							<h2>{ props.media.artist }</h2>
+							<h3>{ props.media.album }</h3>
 						</div>
 					</div>
 				</div>
@@ -194,7 +183,7 @@ function Player() {
 
 				{/* audio tag */}
 				<audio ref={audio} onTimeUpdate={updateTime}>
-					<source src={media.file} type="audio/ogg" />
+					<source src={props.media.file} type="audio/ogg" />
 				</audio>
 			</div>
 		</>

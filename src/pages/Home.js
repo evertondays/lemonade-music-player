@@ -5,7 +5,6 @@ function Home(props){
 	function getMusicByAPI(){
 		axios.get(`http://localhost:3333/music/19`)
 		.then((response) => {
-			console.log(response.data);
 			props.setMedia(response.data)
 		}).catch(function (error) {
 			console.error(error);
