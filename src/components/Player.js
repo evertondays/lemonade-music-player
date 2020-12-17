@@ -7,9 +7,10 @@ import
 from 'react-icons/fa';
 import convertSegMin from '../utils/convertSegMin';
 
+import Home from '../pages/Home';
+
 import '../css/components/player.css';
 import '../css/range.css';
-
 
 function Player() {
 	const audio = useRef(null);
@@ -19,20 +20,26 @@ function Player() {
 		time: 0,
 		timeInSeconds: '0:00',
 		totalTimeInSeconds: '0:00',
-		volume: 0.75,
+		volume: 0.3,
 		muted: false,
 	});
 
 	const [media, setMedia] = useState({
-		name: 'Um Brinde Pra Nós',
+		name: 'Um Brinde Pra Nóssss',
 		artist: 'Hungria Hip Hop',
 		album: 'Hungria vol. 4',
 		image: 'https://statig1.akamaized.net/bancodeimagens/6j/yv/mx/6jyvmx9n8o0fpsnd2c9uq30tt.jpg',
-		file: 'http://localhost:3333/song/0d64c33553713870b403b591fab3e940.mp3',
+		file: 'http://localhost:3333/song/0d64c33553713870b403b591fab3e940.mp3'
 	});
 
 	const [infoShow, setInfoShow] = useState(false);
 	const [volumeShow, setVolumeShow] = useState(false);
+
+	// Media effect
+	useEffect(() => {
+		setPlayer({...player, time: 0, totalTimeInSeconds: '0:00', timeInSeconds: '0:00'});
+		audio.current.currentTime =  0;
+	},[media]);
 
 	// Playing effect
 	useEffect(() => {
@@ -53,6 +60,9 @@ function Player() {
 		audio.current.muted = player.muted;
 	},[player.muted]);
 
+	// ***********************************
+	// Funções de controle da tag de audio
+	// ***********************************
 	function togglePlay(){
 		let playing = !player.playing;
 		setPlayer({...player, playing});
@@ -81,7 +91,9 @@ function Player() {
 		setPlayer({...player, muted});
 	}
 
+	// **********************************************
 	// Funções de exibição (para o layout responsivo)
+	// **********************************************
 	function showInfo(){
 		let infos = document.querySelector('#player-container .infos');
 
@@ -115,6 +127,7 @@ function Player() {
 
 	return (
 		<>
+			<Home setMedia={setMedia} />
 			<div className="name-info">{ media.name } - { media.artist }</div>
 			<div id="player-container">
 				{/* Informações PLUS */}
