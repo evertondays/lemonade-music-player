@@ -15,11 +15,14 @@ function Player(props) {
 
 	const [player, setPlayer] = useState({
 		playing: false,
+		volume: 0.75,
+		muted: false,
+	});
+
+	const [playerTime, setPlayerTime] = useState({
 		time: 0,
 		timeInSeconds: '0:00',
-		totalTimeInSeconds: '0:00',
-		volume: 0.3,
-		muted: false,
+		totalTimeInSeconds: '0:00'
 	});
 
 	const [infoShow, setInfoShow] = useState(false);
@@ -27,7 +30,7 @@ function Player(props) {
 
 	// Media effect
 	useEffect(() => {
-		setPlayer({...player, time: 0, totalTimeInSeconds: '0:00', timeInSeconds: '0:00'});
+		setPlayerTime({time: 0, totalTimeInSeconds: '0:00', timeInSeconds: '0:00'});
 		audio.current.currentTime =  0;
 	},[props.media]);
 
@@ -63,13 +66,14 @@ function Player(props) {
 		let time = audio.current.currentTime / (audio.current.duration / 100);
 		let timeInSeconds = convertSegMin(audio.current.currentTime);
 
-		setPlayer({...player, time, timeInSeconds, totalTimeInSeconds});
+		setPlayerTime({time, timeInSeconds, totalTimeInSeconds});
 	}
 
 	function userSetTime(event){
-		setPlayer({...player, time: event.target.value});
-		audio.current.currentTime =  (audio.current.duration / 100) * event.target.value;
+		let timeInSeconds = convertSegMin((audio.current.duration / 100) * event.target.value);
+		setPlayerTime({...playerTime, timeInSeconds, time: event.target.value});
 
+		audio.current.currentTime =  (audio.current.duration / 100) * event.target.value;
 	}
 
 	function userSetVolume(event){
@@ -146,14 +150,14 @@ function Player(props) {
 					</div>
 					
 					<div className="slider-container">
-						<div className="time">{player.timeInSeconds}</div>
+						<div className="time">{playerTime.timeInSeconds}</div>
 						<input className="slider" id="music-range" 
 								type="range" step={0.1}
 								min={0} max={100} 
-								value={player.time} onChange={userSetTime}
-								style={{background: `linear-gradient(90deg, rgb(0,232,143) ${player.time}%, rgb(140,140,151) ${player.time}%)`}}
+								value={playerTime.time} onChange={userSetTime}
+								style={{background: `linear-gradient(90deg, rgb(0,232,143) ${playerTime.time}%, rgb(140,140,151) ${playerTime.time}%)`}}
 						/>
-						<div className="time">{player.totalTimeInSeconds}</div>
+						<div className="time">{playerTime.totalTimeInSeconds}</div>
 					</div>
 				</div>
 				
