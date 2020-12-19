@@ -32,8 +32,10 @@ function Player(props) {
 
 	// Media effect
 	useEffect(() => {
-		setPlayerTime({time: 0, totalTimeInSeconds: '0:00', timeInSeconds: '0:00'});
-		audio.current.currentTime =  0;
+		if(audio.current.src === props.media.file){
+			togglePlay();
+			return;
+		}
 
 		if(!player.firstMusic){
 			audio.current.src = props.media.file;
@@ -45,7 +47,7 @@ function Player(props) {
 			audio.current.play();
 		} else {
 			setPlayer({...player, firstMusic: false})
-		}	
+		}
 	},[props.media]);
 
 	// Playing effect
