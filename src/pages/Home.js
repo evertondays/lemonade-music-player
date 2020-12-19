@@ -20,7 +20,7 @@ function Home(props){
 			{
 				!musicList ? 'Carregando . . .' 
 					: musicList.map((music, index) => {
-						return <Item key={index} music={music} />
+						return <Item key={index} music={music} setMedia={props.setMedia} />
 					})
 			}
 		</div>

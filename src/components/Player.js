@@ -12,11 +12,13 @@ import '../css/range.css';
 
 function Player(props) {
 	const audio = useRef(null);
+	const sourceAudio = useRef(null);
 
 	const [player, setPlayer] = useState({
 		playing: false,
 		volume: 0.75,
 		muted: false,
+		firstMusic: true
 	});
 
 	const [playerTime, setPlayerTime] = useState({
@@ -32,6 +34,18 @@ function Player(props) {
 	useEffect(() => {
 		setPlayerTime({time: 0, totalTimeInSeconds: '0:00', timeInSeconds: '0:00'});
 		audio.current.currentTime =  0;
+
+		if(!player.firstMusic){
+			audio.current.src = props.media.file;
+
+			if(player.playing === false){
+				togglePlay();
+			}
+
+			audio.current.play();
+		} else {
+			setPlayer({...player, firstMusic: false})
+		}	
 	},[props.media]);
 
 	// Playing effect
@@ -62,11 +76,13 @@ function Player(props) {
 	}
 
 	function updateTime(){
-		let totalTimeInSeconds = convertSegMin(audio.current.duration);
-		let time = audio.current.currentTime / (audio.current.duration / 100);
-		let timeInSeconds = convertSegMin(audio.current.currentTime);
-
-		setPlayerTime({time, timeInSeconds, totalTimeInSeconds});
+		if(!isNaN(audio.current.duration)){
+			let totalTimeInSeconds = convertSegMin(audio.current.duration);
+			let time = audio.current.currentTime / (audio.current.duration / 100);
+			let timeInSeconds = convertSegMin(audio.current.currentTime);
+	
+			setPlayerTime({time, timeInSeconds, totalTimeInSeconds});
+		}
 	}
 
 	function userSetTime(event){
@@ -127,7 +143,7 @@ function Player(props) {
 				<div className="infos-container">
 					<button className="show-info-button" onClick={showInfo}><FaInfoCircle size={18} /></button>
 					<div className="infos">
-						<img src={props.media.file} alt={ props.media.album } />
+						<img src={props.media.image} alt={ props.media.album } />
 						<div className="info-text">
 							<h1>{ props.media.name }</h1>
 							<h2>{ props.media.artist }</h2>
@@ -187,7 +203,7 @@ function Player(props) {
 
 				{/* audio tag */}
 				<audio ref={audio} onTimeUpdate={updateTime}>
-					<source src={props.media.file} type="audio/ogg" />
+					<source ref={sourceAudio} src={props.media.file} type="audio/ogg" />
 				</audio>
 			</div>
 		</>
