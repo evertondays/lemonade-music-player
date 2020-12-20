@@ -11,10 +11,13 @@ function Home(props){
 	}
 
 	return(
-		<>
-			<button onClick={changeMusic}>{props.music.name}</button>
-			<br/><br/>
-		</>
+		<tr>
+			<th className="index-th"><button onClick={changeMusic}>Play</button></th>
+			<th>{props.music.name}</th>
+			<th>{props.music.artist}</th>
+			<th>{props.music.album}</th>
+			<th className="duration-th">?:??</th>
+		</tr>
 	);
 }
 

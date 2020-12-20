@@ -10,12 +10,12 @@ import Player from './components/Player';
 export default function Routes(props){
 	return(
 		<BrowserRouter>
-			<Player media={props.media} setMedia={props.setMedia} />
 			<Switch>
 				<Route exact path="/" >
 					<Home setMedia={props.setMedia} />
 				</Route>
 			</Switch>
+			<Player media={props.media} setMedia={props.setMedia} />
 		</BrowserRouter>
 	);
 }

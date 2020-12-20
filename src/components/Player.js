@@ -138,7 +138,7 @@ function Player(props) {
 	}
 
 	return (
-		<>
+		<section>
 			<div className="name-info">{ props.media.name } - { props.media.artist }</div>
 			<div id="player-container">
 				{/* Informações PLUS */}
@@ -208,7 +208,7 @@ function Player(props) {
 					<source ref={sourceAudio} src={props.media.file} type="audio/ogg" />
 				</audio>
 			</div>
-		</>
+		</section>
   );
 }
 

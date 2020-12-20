@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import Item from '../components/ListItem';
 
+import '../css/components/music-list.css';
+
 function Home(props){
 	const [musicList, setMusicList] = useState();
 
@@ -16,13 +18,26 @@ function Home(props){
 	}, []);
 
 	return(
-		<div className="container">
-			{
-				!musicList ? 'Carregando . . .' 
-					: musicList.map((music, index) => {
-						return <Item key={index} music={music} setMedia={props.setMedia} />
-					})
-			}
+		<div className="page">
+			<table className="music-list">
+				<thead>
+					<tr>
+						<th className="index-th">#</th>
+						<th>Faixa</th>
+						<th>Artista</th>
+						<th>Albúm</th>
+						<th className="duration-th">Duração</th>
+					</tr>
+				</thead>
+				<tbody>
+					{
+						!musicList ? 'Carregando . . .' 
+							: musicList.map((music, index) => {
+								return <Item key={index} music={music} setMedia={props.setMedia} />
+							})
+					}
+				</tbody>
+			</table>
 		</div>
 	);
 }
