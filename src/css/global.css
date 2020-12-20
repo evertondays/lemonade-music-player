@@ -3,6 +3,7 @@
   --background-dark: #1D1E25;
   --primary: #00e88f;
   --white: #FFF;
+  --gray: #72727d;
 
   font-size: 60%;
 }
@@ -21,7 +22,10 @@ html,
 body{
   height: 100vh;
   max-width: 100%;
-  overflow-x: hidden;
+}
+
+body{
+  overflow-y: auto;
 }
 
 a{
@@ -54,6 +58,20 @@ body {
   :root {
     font-size: 62.5%;
   }
+}
+
+/* BARRA */
+::-webkit-scrollbar-track {
+	background-color: var(--gray);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+	background-color: var(--gray);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--primary);
 }
 
 /* Ajuda para o JS */
