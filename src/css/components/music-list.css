@@ -1,7 +1,6 @@
 .page{
   padding: 2rem;
   padding-bottom: 25rem;
-  /* min-height: calc(100% + 20rem); */
 }
 
 .music-list{
@@ -36,13 +35,25 @@
 }
 
 .music-list .duration-th, .index-th{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.teste{
-  position: fixed;
-  width: 100%;
-  height: 2rem;
-  background-color: red;
-  bottom: 0;
+/* Botão */
+.music-list .btn-play{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  border-radius: 90rem;
+
+  color: var(--background);
+  background-color: var(--white);
+
+  cursor: pointer;
+  outline: none;
+  border: none;
 }
