@@ -145,33 +145,6 @@
 }
 
 @media (min-width: 900px) {
-  /* Infos */
-  
-  /* #player-container .show-info-button{
-    display:name-info none;
-  }
-
-  #player-container .infos{
-    display: flex !important;
-
-    border: none;
-    padding: 0;
-    margin: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    position: relative;
-
-    bottom: 0%;
-    left: 0%;
-  }
-
-  #player-container .infos img{
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
-  } */
-
   /* Controles de som  */
   #player-container .sound-controllers .sound-volume-range{
     display: inline !important;
