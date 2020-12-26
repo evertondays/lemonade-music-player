@@ -5,8 +5,15 @@ import
 		FaTimes
 	} 
 from 'react-icons/fa';
+
+// Contexts
+import { usePlayer } from '../context/PlayerContext';
+import { useMedia } from '../context/MediaContext';
+
+// Utils
 import convertSegMin from '../utils/convertSegMin';
 
+// Styles
 import '../css/components/player.css';
 import '../css/range.css';
 
@@ -14,12 +21,8 @@ function Player(props) {
 	const audio = useRef(null);
 	const sourceAudio = useRef(null);
 
-	const [player, setPlayer] = useState({
-		playing: false,
-		volume: 0.75,
-		muted: false,
-		firstMusic: true
-	});
+	const {media} = useMedia();
+	const {player, setPlayer} = usePlayer();
 
 	const [playerTime, setPlayerTime] = useState({
 		time: 0,
@@ -32,13 +35,13 @@ function Player(props) {
 
 	// Media effect
 	useEffect(() => {
-		if(audio.current.src === props.media.file){
+		if(audio.current.src === media.file){
 			togglePlay();
 			return;
 		}
 
 		if(!player.firstMusic){
-			audio.current.src = props.media.file;
+			audio.current.src = media.file;
 
 			if(player.playing === false){
 				togglePlay();
@@ -48,7 +51,7 @@ function Player(props) {
 		} else {
 			setPlayer({...player, firstMusic: false})
 		}
-	},[props.media]);
+	},[media]);
 
 	// Playing effect
 	useEffect(() => {
@@ -139,17 +142,17 @@ function Player(props) {
 
 	return (
 		<section>
-			<div className="name-info">{ props.media.name } - { props.media.artist }</div>
+			<div className="name-info">{ media.name } - { media.artist }</div>
 			<div id="player-container">
 				{/* Informações PLUS */}
 				<div className="infos-container">
 					<button className="show-info-button" onClick={showInfo}><FaInfoCircle size={18} /></button>
 					<div className="infos">
-						<img src={props.media.image} alt={ props.media.album } />
+						<img src={media.image} alt={ media.album } />
 						<div className="info-text">
-							<h1>{ props.media.name }</h1>
-							<h2>{ props.media.artist }</h2>
-							<h3>{ props.media.album }</h3>
+							<h1>{ media.name }</h1>
+							<h2>{ media.artist }</h2>
+							<h3>{ media.album }</h3>
 						</div>
 					</div>
 				</div>
@@ -205,7 +208,7 @@ function Player(props) {
 
 				{/* audio tag */}
 				<audio ref={audio} onTimeUpdate={updateTime}>
-					<source ref={sourceAudio} src={props.media.file} type="audio/ogg" />
+					<source ref={sourceAudio} src={media.file} type="audio/ogg" />
 				</audio>
 			</div>
 		</section>

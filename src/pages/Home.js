@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Contexts
+import {useMedia} from '../context/MediaContext';
+
+// Components
 import Item from '../components/ListItem';
 
+// Styles
 import '../css/components/music-list.css';
 
-function Home(props){
+function Home(){
+	const {setMedia} = useMedia();
 	const [musicList, setMusicList] = useState();
 
 	useEffect(() => {
@@ -33,7 +39,7 @@ function Home(props){
 					{
 						!musicList ? 'Carregando . . .' 
 							: musicList.map((music, index) => {
-								return <Item key={index} music={music} setMedia={props.setMedia} />
+								return <Item key={index} music={music} setMedia={setMedia} />
 							})
 					}
 				</tbody>

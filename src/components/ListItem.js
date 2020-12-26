@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaPlay, FaPause } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 
 function Home(props){
 

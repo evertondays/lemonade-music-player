@@ -7,15 +7,15 @@ import Home from './pages/Home';
 // Components
 import Player from './components/Player';
 
-export default function Routes(props){
+export default function Routes(){
 	return(
 		<BrowserRouter>
 			<Switch>
 				<Route exact path="/" >
-					<Home setMedia={props.setMedia} />
+					<Home />
 				</Route>
 			</Switch>
-			<Player media={props.media} setMedia={props.setMedia} />
+			<Player />
 		</BrowserRouter>
 	);
 }
