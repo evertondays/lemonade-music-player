@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Contexts
-import {useMedia} from '../context/MediaContext';
-
 // Components
 import Item from '../components/ListItem';
 
@@ -11,7 +8,6 @@ import Item from '../components/ListItem';
 import '../css/components/music-list.css';
 
 function Home(){
-	const {setMedia} = useMedia();
 	const [musicList, setMusicList] = useState();
 
 	useEffect(() => {
@@ -30,8 +26,8 @@ function Home(){
 					<tr>
 						<th className="index-th">#</th>
 						<th>Faixa</th>
-						<th>Artista</th>
-						<th>Albúm</th>
+						<th className="artist-th">Artista</th>
+						<th className="album-th">Albúm</th>
 						<th className="duration-th">Duração</th>
 					</tr>
 				</thead>
@@ -39,7 +35,7 @@ function Home(){
 					{
 						!musicList ? 'Carregando . . .' 
 							: musicList.map((music, index) => {
-								return <Item key={index} music={music} setMedia={setMedia} />
+								return <Item key={index} id={index + 1} music={music} />
 							})
 					}
 				</tbody>

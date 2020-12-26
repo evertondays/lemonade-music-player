@@ -1,37 +1,88 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaPlay } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaPlay, FaPause } from 'react-icons/fa';
 
-function Home(props){
+// Assets
+import PlayingGif from '../assets/images/equalizer-2.gif';
 
-	function changeMusic(){
+// Contexts
+import { usePlayer } from '../context/PlayerContext';
+import { useMedia } from '../context/MediaContext';
+
+function ListItem(props) {
+	const { player } = usePlayer();
+	const { media, setMedia } = useMedia();
+
+	const [isThisSong, setIsThisSong] = useState(false);
+
+	function changeMusic() {
 		const newMusic = {
 			...props.music,
 			file: `http://localhost:3333/song/${props.music.file}`
 		}
 
-		props.setMedia(newMusic);
+		setMedia(newMusic);
 	}
 
-	const audioTag = useRef(null);
 	const [duration, setDuration] = useState('?:??');
 
 	useEffect(() => {
-		audioTag.current.play()
-	}, []);
+		if (media.name === props.music.name && media.artist === props.music.artist
+			&& media.album === props.music.album)
+		{
+			setIsThisSong(true);
+		} else {
+			setIsThisSong(false);
+		}
+	}, [media]);
 
-	return(
+	return (
 		<tr className="list-item">
 			<th className="index-th">
-				<button onClick={changeMusic} className="btn-play">< FaPlay size={15} /></button>
+				<button onClick={changeMusic} className="btn-play">
+					{
+						isThisSong ?
+							(
+								<div className="is-this-song">
+									{
+										player.playing ?
+										(
+											<>
+												<img className="equalizer-gif not-hover" src={PlayingGif} />
+
+												<div className="hover">
+													<FaPause size={15} />
+												</div>
+											</>
+										)
+										: (
+											<>
+												<FaPause className="not-hover" size={15} />
+
+												<div className="hover">
+													<FaPlay size={15} />
+												</div>
+											</>
+										)
+									}
+								</div>
+							)
+							: (
+								<div className="not-this-song">
+									<div className="id not-hover">{props.id}</div>
+
+									<div className="hover">
+										<FaPlay size={15} />
+									</div>
+								</div>)
+					}
+				</button>
 			</th>
 			<th>{props.music.name}</th>
-			<th>{props.music.artist}</th>
-			<th>{props.music.album}</th>
+			<th className="artist-th">{props.music.artist}</th>
+			<th className="album-th">{props.music.album}</th>
 			<th className="duration-th">{duration}</th>
-
-			<audio src={props.music.file} ref={audioTag}></audio>
 		</tr>
 	);
 }
 
-export default Home;
+export default ListItem;
