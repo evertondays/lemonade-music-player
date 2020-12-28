@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import convertSegMin from '../utils/convertSegMin';
 import { FaPlay, FaPause } from 'react-icons/fa';
 
 // Assets
@@ -23,8 +24,7 @@ function ListItem(props) {
 		setMedia(newMusic);
 	}
 
-	const [duration, setDuration] = useState('?:??');
-
+	// Verificar se é essa musica que está tocando
 	useEffect(() => {
 		if (media.name === props.music.name && media.artist === props.music.artist
 			&& media.album === props.music.album)
@@ -80,7 +80,7 @@ function ListItem(props) {
 			<th>{props.music.name}</th>
 			<th className="artist-th">{props.music.artist}</th>
 			<th className="album-th">{props.music.album}</th>
-			<th className="duration-th">{duration}</th>
+			<th className="duration-th">{convertSegMin(props.music.duration)}</th>
 		</tr>
 	);
 }

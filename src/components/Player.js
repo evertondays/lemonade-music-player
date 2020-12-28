@@ -26,8 +26,7 @@ function Player(props) {
 
 	const [playerTime, setPlayerTime] = useState({
 		time: 0,
-		timeInSeconds: '0:00',
-		totalTimeInSeconds: '0:00'
+		timeInSeconds: '0:00'
 	});
 
 	const [infoShow, setInfoShow] = useState(false);
@@ -82,11 +81,10 @@ function Player(props) {
 
 	function updateTime(){
 		if(!isNaN(audio.current.duration)){
-			let totalTimeInSeconds = convertSegMin(audio.current.duration);
 			let time = audio.current.currentTime / (audio.current.duration / 100);
 			let timeInSeconds = convertSegMin(audio.current.currentTime);
 	
-			setPlayerTime({time, timeInSeconds, totalTimeInSeconds});
+			setPlayerTime({time, timeInSeconds});
 		}
 	}
 
@@ -178,7 +176,7 @@ function Player(props) {
 								value={playerTime.time} onChange={userSetTime}
 								style={{background: `linear-gradient(90deg, rgb(0,232,143) ${playerTime.time}%, rgb(140,140,151) ${playerTime.time}%)`}}
 						/>
-						<div className="time">{playerTime.totalTimeInSeconds}</div>
+						<div className="time">{convertSegMin(media.duration)}</div>
 					</div>
 				</div>
 				
