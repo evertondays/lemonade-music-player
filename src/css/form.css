@@ -1,0 +1,67 @@
+.page-container{
+  padding-bottom: 25rem;
+}
+
+.register-music{
+  padding: 2rem;
+}
+
+.register-music .form-group{
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+}
+
+.register-music input{
+  height: 2.8rem;
+  color: var(--white);
+  background-color: var(--background);
+  border: 1px solid var(--primary);
+  border-radius: 10rem;
+  padding-left: 0.7rem;
+  width: 100%;
+}
+
+.register-music label{
+  margin: 1rem 0 0.7rem  0.7rem;
+}
+
+.register-music textarea{
+  background-color: var(--background);
+  color: var(--white);
+  border: 1px solid var(--primary) !important;
+  border-radius: 0.4rem;
+  padding-left: 0.7rem;
+  font-family: 'Roboto', sans-serif;
+  resize: vertical;
+  margin: 0 0.1rem;
+}
+
+.register-music textarea::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: var(--background);
+  margin-right: 100%;
+  height: 80%;
+}
+
+.register-music textarea::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+}
+
+.register-music select{
+  height: 2.8rem;
+  border: 1px solid var(--primary);
+  border-radius: 10rem;
+  padding: 0 0.7rem;
+}
+
+.register-music input[type="file"]{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 5rem;
+
+  border: 3px dashed var(--primary);
+  border-radius: 0;
+}
