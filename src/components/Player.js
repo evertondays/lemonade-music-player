@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import 
 	{ 
-		FaPlay, FaPause, FaVolumeMute, FaVolumeUp, FaArrowRight, FaArrowLeft, FaInfoCircle,
+		FaPlay, FaPause, FaVolumeMute, FaVolumeUp, FaStepForward, FaStepBackward, FaInfoCircle,
 		FaTimes
 	} 
 from 'react-icons/fa';
@@ -158,14 +158,14 @@ function Player(props) {
 				{/* Controles da musica */}
 				<div className="controllers">
 					<div className="buttons">
-						<button><FaArrowLeft size={28} /></button>
+						<button><FaStepBackward size={30} /></button>
 						<button className="btn-play" onClick={togglePlay}>
 							{!player.playing ? 
 								(<FaPlay size={35} />) 
 								: (<FaPause size={35}  />)
 							}
 						</button>
-						<button><FaArrowRight size={28} /></button>
+						<button><FaStepForward size={30} /></button>
 					</div>
 					
 					<div className="slider-container">
