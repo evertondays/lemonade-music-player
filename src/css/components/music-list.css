@@ -39,12 +39,13 @@
   align-items: center;
 }
 
-.music-list .index-th{
-  text-align: center;
+.music-list .index-th, .options-th{
+  text-align: center !important;
 }
 
-.options-th{
-  align-items: center;
+.music-list .index-th{
+  width: 10rem !important;
+  padding: 0;
 }
 
 .options-th button{
