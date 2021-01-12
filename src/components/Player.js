@@ -183,7 +183,7 @@ function Player(props) {
 				{/* Controle de som */}
 				<div className="sound-controllers">
 					<input className="sound-volume-range slider"  id="range-sound"
-							type="range" step={0.1}
+							type="range" step={0.01}
 							min={0} max={1}
 							value={player.volume} onChange={userSetVolume}
 							style={{background: `linear-gradient(90deg, rgb(0,232,143) ${player.volume * 100}%, rgb(140,140,151) ${player.volume * 100}%)`}}
