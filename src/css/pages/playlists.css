@@ -1,0 +1,132 @@
+.playlist-grid{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 0 4rem;
+
+
+  padding-bottom: 25rem;
+}
+
+.playlist-grid .item{
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 800px) {
+  .playlist-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1.8rem;
+    padding: 0 4rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .playlist-grid{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1300px) {
+  .playlist-grid{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* FORM */
+.create-playlist-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 3rem;
+  background-color: var(--background);
+  border: solid 2px var(--primary);
+  border-radius: 8px;
+
+  z-index: 1;
+}
+
+.create-playlist-form input{
+  height: 2.8rem;
+  color: var(--white);
+  background-color: var(--background);
+  border: 1px solid var(--primary);
+  border-radius: 10rem;
+  padding-left: 0.7rem;
+  width: 100%;
+}
+
+.create-playlist-form textarea{
+  background-color: var(--background);
+  color: var(--white);
+  border: 1px solid var(--primary) !important;
+  border-radius: 0.4rem;
+  padding-left: 0.7rem;
+  font-family: 'Roboto', sans-serif;
+  resize: none;
+  margin: 0 0.1rem;
+}
+
+/* ITEM */
+.playlist-grid .item{
+  width: 30rem;
+}
+
+.playlist-grid .item{
+  width: 30rem;
+}
+
+.playlist-grid .item .img{
+  width: 30rem;
+  height: 30rem;
+  padding: 1rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.playlist-grid .create-playlist .img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+  border: dashed 2px var(--primary);
+
+  font-size: 25px;
+  color: var(--primary);
+}
+
+.playlist-grid .item h1{
+  font-weight: 800;
+  margin-top: 1rem;
+  
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.playlist-grid .item button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--white);
+  border: none;
+  border-radius: 100%;
+  padding: 1.3rem;
+
+  color: var(--background);
+  cursor: pointer;
+}
+

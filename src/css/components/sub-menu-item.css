@@ -1,0 +1,39 @@
+.sub-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 1.1rem 0;
+
+  border: 2px solid var(--primary);
+  border-radius: 7px;
+  background-color: var(--background-dark);
+}
+
+.sub-menu .icon{
+  margin-right: 1rem;
+}
+
+.sub-menu .item{
+  width: 100%;
+  margin: 5px 0;
+
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.sub-menu .item:hover{
+  background-color: var(--gray);
+}
+
+.sub-menu .delete{
+  color: var(--red) !important;
+}
+
+.sub-menu .delete:hover{
+  color: var(--red-dark) !important;
+}

@@ -35,14 +35,25 @@
 }
 
 .music-list .duration-th{
+  text-align: center;
   align-items: center;
 }
 
 .music-list .index-th{
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
+}
+
+.options-th{
+  align-items: center;
+}
+
+.options-th button{
+  text-align: center;
+  padding: 0;
+  background-color: transparent;
+  color: var(--white);
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
@@ -51,7 +62,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .artist-th{
     display: none;
   }
@@ -59,9 +70,7 @@
 
 /* Botão */
 .music-list .btn-play{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 
   height: 3rem;
   border-radius: 90rem;

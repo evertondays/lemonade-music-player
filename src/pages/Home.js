@@ -29,6 +29,7 @@ function Home(){
 						<th className="artist-th">Artista</th>
 						<th className="album-th">Albúm</th>
 						<th className="duration-th">Duração</th>
+						<th className="options-th"><center>Opções</center></th>
 					</tr>
 				</thead>
 				<tbody>

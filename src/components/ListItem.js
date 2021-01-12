@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import convertSegMin from '../utils/convertSegMin';
-import { FaPlay, FaPause } from 'react-icons/fa';
+import { FaPlay, FaPause, FaPlus } from 'react-icons/fa';
+import Menu from './ListItemMenu';
 
 // Assets
 import PlayingGif from '../assets/images/equalizer-2.gif';
@@ -14,6 +15,7 @@ function ListItem(props) {
 	const { media, setMedia } = useMedia();
 
 	const [isThisSong, setIsThisSong] = useState(false);
+	const [menuVisible, setMenuVisible] = useState(false);
 
 	function changeMusic() {
 		const newMusic = {
@@ -35,6 +37,10 @@ function ListItem(props) {
 		}
 	}, [media]);
 
+	function toggleOptions(){
+		setMenuVisible(!menuVisible);
+	}
+
 	return (
 		<tr className="list-item">
 			<th className="index-th">
@@ -47,7 +53,7 @@ function ListItem(props) {
 										player.playing ?
 										(
 											<>
-												<img className="equalizer-gif not-hover" src={PlayingGif} />
+												<img className="equalizer-gif not-hover" src={PlayingGif} alt="gif" />
 
 												<div className="hover">
 													<FaPause size={15} />
@@ -81,6 +87,21 @@ function ListItem(props) {
 			<th className="artist-th">{props.music.artist}</th>
 			<th className="album-th">{props.music.album}</th>
 			<th className="duration-th">{convertSegMin(props.music.duration)}</th>
+			<th className="options-th">
+				<center>
+					<button onClick={toggleOptions}><FaPlus /></button>
+					{
+					menuVisible ?
+					(
+						<div className="overlay" onClick={toggleOptions}>
+							<Menu id={props.music.id} />
+						</div>
+					) 
+						
+					: ''
+					}
+				</center>
+			</th>
 		</tr>
 	);
 }
