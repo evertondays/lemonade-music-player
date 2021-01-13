@@ -21,6 +21,32 @@ nav .page-tile{
   letter-spacing: 2px;
 }
 
+nav .right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav .btn-playlists{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.55rem;
+  margin-right: 2rem;
+
+  transition: color 0.35s;
+}
+
+nav .btn-playlists:hover{
+  color: var(--scumble-white);
+}
+
+nav .btn-playlists .icon{
+  margin-right: 0.5rem;
+  font-size: 12px;
+}
+
 nav .btn-import-music{
   display: flex;
   justify-content: center;
