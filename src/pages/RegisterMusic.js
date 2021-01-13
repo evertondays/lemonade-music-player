@@ -15,14 +15,18 @@ function RegisterMusic(){
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
+		}).then(async (response) => {
+			await response;
+			
+			history.push('/');
 		})
 
-		history.push('/');
+		
 	}
 
 	return(
 		<div className="page-container">
-			<form ref={form} className="register-music" action="http://localhost:3333/music/">
+			<form ref={form} className="register" action="http://localhost:3333/music/">
 				<h1>Cadastre uma nova música</h1>
 
 				<div className="form-group">
@@ -50,7 +54,7 @@ function RegisterMusic(){
 					<input name="image" type="text" require />
 				</div>
 
-				<button type="button" onClick={handleSubmit}>Adicionar</button>
+				<button type="button" onClick={handleSubmit} className="btn-create">Adicionar musica</button>
 			</form>
 		</div>
 	);
