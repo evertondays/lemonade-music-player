@@ -1,8 +1,6 @@
 import React from 'react';
 import { FaPlay } from 'react-icons/fa';
 
-import '../css/components/Playlist/item.css';
-
 function PlaylistItem(props){
 	return(
 		<div className="item">
