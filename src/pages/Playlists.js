@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaPlus } from 'react-icons/fa';
 
@@ -23,9 +24,11 @@ function Playlists(){
 		<div className="playlist-grid">
 			{/* Itens  */}
 			<div className="item create-playlist">
-				<div className="img">
-					<FaPlus />
-				</div>
+				<Link to='/register-playlist'>
+					<div className="img">
+						<FaPlus />
+					</div>
+				</Link>
 				<h1>Criar playlist</h1>
 			</div>
 			{

@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import RegisterMusic from './pages/RegisterMusic';
 import Playlists from './pages/Playlists';
+import RegisterPlaylist from './pages/RegisterPlaylist';
 
 // Components
 import Navbar from './components/Navbar';
@@ -23,6 +24,9 @@ export default function Routes(){
 				</Route>
 				<Route path="/playlists">
 					<Playlists />
+				</Route>
+				<Route path="/register-playlist">
+					<RegisterPlaylist />
 				</Route>
 			</Switch>
 			<Player />
