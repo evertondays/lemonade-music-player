@@ -1,22 +1,18 @@
 import React from 'react';
 
-import './css/global.css'
-
 import Routes from './routes';
+import Contexts from './context/Contexts';
 
-import MediaProvider from './context/MediaContext';
-import PlayerProvider from './context/PlayerContext';
+import './css/global.css';
 
 function App() {	
 	return (
-		<div className="App">
-			<PlayerProvider>
-				<MediaProvider>
-					<Routes />
-				</MediaProvider>
-			</PlayerProvider>
-		</div>
-  );
+		<>
+			<Contexts>
+				<Routes />
+			</Contexts>
+		</>
+	);
 }
 
 export default App;

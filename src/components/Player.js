@@ -9,6 +9,7 @@ from 'react-icons/fa';
 // Contexts
 import { usePlayer } from '../context/PlayerContext';
 import { useMedia } from '../context/MediaContext';
+import { usePlaylist } from '../context/PlaylistContext';
 
 // Utils
 import convertSegMin from '../utils/convertSegMin';
@@ -17,12 +18,13 @@ import convertSegMin from '../utils/convertSegMin';
 import '../css/components/player.css';
 import '../css/range.css';
 
-function Player(props) {
+function Player() {
 	const audio = useRef(null);
 	const sourceAudio = useRef(null);
 
-	const {media} = useMedia();
+	const { media, setMedia } = useMedia();
 	const {player, setPlayer} = usePlayer();
+	const { playlist, setPlaylist } = usePlaylist();
 
 	const [playerTime, setPlayerTime] = useState({
 		time: 0,
@@ -36,6 +38,11 @@ function Player(props) {
 	useEffect(() => {
 		if(audio.current.src === media.file){
 			togglePlay();
+			return;
+		}
+
+		// Verificando se o media não está esperando a resposta da API
+		if(media.file === '?'){
 			return;
 		}
 
@@ -85,6 +92,28 @@ function Player(props) {
 			let timeInSeconds = convertSegMin(audio.current.currentTime);
 	
 			setPlayerTime({time, timeInSeconds});
+		}
+
+		// Trocando a música
+		if(audio.current.ended){
+			if(playlist.data.length === playlist.music + 1){
+				setPlayer({...player, playing: false})
+				alert('A playlist acabou!');
+			} else {
+				setMedia({
+					...playlist.data[playlist.music + 1],
+					file: `http://localhost:3333/song/${playlist.data[playlist.music + 1].file}`
+				});
+
+				setPlayer({...player, firstMusic: false});
+
+				setPlayerTime({
+					time: 0,
+					timeInSeconds: '0:00'
+				});
+	
+				setPlaylist({...playlist, music: playlist.music+1});
+			}
 		}
 	}
 
