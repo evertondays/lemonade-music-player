@@ -26,7 +26,7 @@ function Playlists(){
 			<div className="item create-playlist">
 				<Link to='/register-playlist'>
 					<div className="img">
-						<FaPlus />
+						<FaPlus size={30} />
 					</div>
 				</Link>
 				<h1>Criar playlist</h1>

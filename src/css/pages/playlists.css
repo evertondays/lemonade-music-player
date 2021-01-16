@@ -34,42 +34,6 @@
   }
 }
 
-/* FORM */
-.create-playlist-form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  padding: 3rem;
-  background-color: var(--background);
-  border: solid 2px var(--primary);
-  border-radius: 8px;
-
-  z-index: 1;
-}
-
-.create-playlist-form input{
-  height: 2.8rem;
-  color: var(--white);
-  background-color: var(--background);
-  border: 1px solid var(--primary);
-  border-radius: 10rem;
-  padding-left: 0.7rem;
-  width: 100%;
-}
-
-.create-playlist-form textarea{
-  background-color: var(--background);
-  color: var(--white);
-  border: 1px solid var(--primary) !important;
-  border-radius: 0.4rem;
-  padding-left: 0.7rem;
-  font-family: 'Roboto', sans-serif;
-  resize: none;
-  margin: 0 0.1rem;
-}
-
 /* ITEM */
 .playlist-grid .item{
   width: 30rem;
@@ -101,7 +65,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 0;
-  border: dashed 2px var(--primary);
+  border: dashed 4px var(--primary);
 
   font-size: 25px;
   color: var(--primary);
