@@ -5,7 +5,7 @@ const PlayerContext = createContext();
 export default function PlayerProvider(props){
 	const [player, setPlayer] = useState({
 		playing: false,
-		volume: 0.15,
+		volume: localStorage.getItem('volume') || 0.75,
 		muted: false,
 		firstMusic: true
 	});

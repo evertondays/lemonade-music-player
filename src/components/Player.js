@@ -71,6 +71,7 @@ function Player() {
 	// Volume effect
 	useEffect(() => {
 		audio.current.volume = player.volume;
+		localStorage.setItem('volume', player.volume);
 	},[player.volume]);
 
 	// Muted effect
