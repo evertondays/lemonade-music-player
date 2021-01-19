@@ -11,7 +11,7 @@ export default function PlaylistProvider(props){
 	useEffect(() => {
 		axios.get('http://localhost:3333/all')
 			.then((response) => {
-				setPlaylist({data: response.data, music: 0})
+				setPlaylist({data: response.data, music: 0, playlistId: 'all'})
 				setMedia(
 					{
 						...response.data[0],

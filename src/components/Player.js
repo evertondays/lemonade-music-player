@@ -134,6 +134,43 @@ function Player() {
 		setPlayer({...player, muted});
 	}
 
+	function nextMusic(){
+		if((playlist.music + 1) < playlist.data.length){
+			setMedia({
+				...playlist.data[playlist.music + 1],
+				file: `http://localhost:3333/song/${playlist.data[playlist.music + 1].file}`
+			});
+	
+			setPlayer({...player, firstMusic: false, playing: true});
+	
+			setPlayerTime({
+				time: 0,
+				timeInSeconds: '0:00'
+			});
+	
+			setPlaylist({...playlist, music: playlist.music+1});
+		}
+	}
+
+	function previewMusic(){
+		if((playlist.music - 1) >= 0){
+			setMedia({
+				...playlist.data[playlist.music - 1],
+				file: `http://localhost:3333/song/${playlist.data[playlist.music - 1].file}`
+			});
+	
+			setPlayer({...player, firstMusic: false, playing: true});
+	
+			setPlayerTime({
+				time: 0,
+				timeInSeconds: '0:00'
+			});
+	
+			setPlaylist({...playlist, music: playlist.music - 1});
+		}
+	}
+
+
 	// **********************************************
 	// Funções de exibição (para o layout responsivo)
 	// **********************************************
@@ -188,20 +225,20 @@ function Player() {
 				{/* Controles da musica */}
 				<div className="controllers">
 					<div className="buttons">
-						<button><FaStepBackward size={30} /></button>
+						<button onClick={previewMusic}><FaStepBackward size={30} /></button>
 						<button className="btn-play" onClick={togglePlay}>
 							{!player.playing ? 
 								(<FaPlay size={35} />) 
 								: (<FaPause size={35}  />)
 							}
 						</button>
-						<button><FaStepForward size={30} /></button>
+						<button onClick={nextMusic}><FaStepForward size={30} /></button>
 					</div>
 					
 					<div className="slider-container">
 						<div className="time">{playerTime.timeInSeconds}</div>
 						<input className="slider" id="music-range" 
-								type="range" step={0.01}
+								type="range" step={0.001}
 								min={0} max={100} 
 								value={playerTime.time} onChange={userSetTime}
 								style={{background: `linear-gradient(90deg, rgb(0,232,143) ${playerTime.time}%, rgb(140,140,151) ${playerTime.time}%)`}}

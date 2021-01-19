@@ -36,7 +36,7 @@ function Home(){
 					{
 						!musicList ? 'Carregando . . .' 
 							: musicList.map((music, index) => {
-								return <Item key={index} id={index + 1} music={music} />
+								return <Item key={index} id={index + 1} music={music} playlistId={'all'} />
 							})
 					}
 				</tbody>

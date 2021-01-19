@@ -9,10 +9,12 @@ import PlayingGif from '../assets/images/equalizer-2.gif';
 // Contexts
 import { usePlayer } from '../context/PlayerContext';
 import { useMedia } from '../context/MediaContext';
+import { usePlaylist } from '../context/PlaylistContext';
 
 function ListItem(props) {
 	const { player } = usePlayer();
 	const { media, setMedia } = useMedia();
+	const { playlist, setPlaylist } = usePlaylist();
 
 	const [isThisSong, setIsThisSong] = useState(false);
 	const [menuVisible, setMenuVisible] = useState(false);
@@ -24,6 +26,10 @@ function ListItem(props) {
 		}
 
 		setMedia(newMusic);
+
+		if(playlist.playlistId === props.playlistId){
+			setPlaylist({...playlist, music: props.id - 1})
+		}
 	}
 
 	// Verificar se é essa musica que está tocando
