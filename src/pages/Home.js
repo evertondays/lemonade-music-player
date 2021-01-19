@@ -11,7 +11,7 @@ function Home(){
 	const [musicList, setMusicList] = useState();
 
 	useEffect(() => {
-		axios.get(`http://localhost:3333/all`)
+		axios.get(`http://192.168.1.191:3333/all`)
 		.then((response) => {
 			setMusicList(response.data);
 		}).catch(function (error) {

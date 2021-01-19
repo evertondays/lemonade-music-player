@@ -11,7 +11,7 @@ function RegisterMusic(){
 	function handleSubmit(){
 		var formData = new FormData(form.current);
 
-		axios.post('http://localhost:3333/music/', formData, {
+		axios.post('http://192.168.1.191:3333/music/', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
@@ -26,7 +26,7 @@ function RegisterMusic(){
 
 	return(
 		<div className="page-container">
-			<form ref={form} className="register" action="http://localhost:3333/music/">
+			<form ref={form} className="register" action="http://192.168.1.191:3333/music/">
 				<h1>Cadastre uma nova música</h1>
 
 				<div className="form-group">

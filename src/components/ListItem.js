@@ -22,7 +22,7 @@ function ListItem(props) {
 	function changeMusic() {
 		const newMusic = {
 			...props.music,
-			file: `http://localhost:3333/song/${props.music.file}`
+			file: `http://192.168.1.191:3333/song/${props.music.file}`
 		}
 
 		setMedia(newMusic);

@@ -19,7 +19,7 @@ function RegisterPlaylist(){
 			'image': image.current.value
 		};
 
-		axios.post('http://localhost:3333/playlist/create', data)
+		axios.post('http://192.168.1.191:3333/playlist/create', data)
 			.then(async (response) => {
 				await response;
 
