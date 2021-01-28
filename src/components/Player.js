@@ -37,27 +37,28 @@ function Player() {
 	// Media effect
 	useEffect(() => {
 		if(audio.current.src === media.file){
-			togglePlay();
-			return;
-		}
-
-		// Verificando se o media não está esperando a resposta da API
-		if(media.file === '?'){
-			return;
-		}
-
-		if(!player.firstMusic){
-
-			audio.current.src = media.file;
-
-			if(player.playing === false){
 				togglePlay();
+				return;
 			}
-
-			audio.current.play();
-		} else {
-			setPlayer({...player, firstMusic: false})
-		}
+	
+			// Verificando se o media não está esperando a resposta da API
+			if(media.file === '?'){
+				return;
+			}
+	
+			if(!player.firstMusic){
+	
+				audio.current.src = media.file;
+	
+				if(player.playing === false){
+					togglePlay();
+				}
+	
+				audio.current.play();
+			} else {
+				setPlayer({...player, firstMusic: false})
+			}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	},[media]);
 
 	// Playing effect

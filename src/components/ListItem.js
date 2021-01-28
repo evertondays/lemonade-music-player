@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import convertSegMin from '../utils/convertSegMin';
 import { FaPlay, FaPause, FaPlus } from 'react-icons/fa';
+
 import Menu from './ListItemMenu';
+import convertSegMin from '../utils/convertSegMin';
 
 // Assets
 import PlayingGif from '../assets/images/equalizer-2.gif';
@@ -29,6 +30,8 @@ function ListItem(props) {
 
 		if(playlist.playlistId === props.playlistId){
 			setPlaylist({...playlist, music: props.id - 1})
+		} else {
+			setPlaylist({data: props.newPlaylist, music: props.id - 1, playlistId: props.playlistId});
 		}
 	}
 

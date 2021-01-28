@@ -32,6 +32,7 @@ nav .btn-playlists{
   justify-content: center;
   align-items: center;
 
+  color: var(--white);
   font-size: 1.55rem;
   margin-right: 2rem;
 
@@ -67,4 +68,35 @@ nav .btn-import-music{
 
 nav .btn-import-music .icon{
   margin-right: 5px;
+}
+
+@media (max-width: 700px) {
+  nav{
+    padding: 2rem 1rem;
+  }
+
+  nav .btn-import-music{
+    color: var(--white);
+    border: none;
+    transition: 0.4s;
+    font-size: 1.55rem;
+  }
+
+  nav .btn-import-music:hover{
+    color: var(--scumble-white);
+  }
+
+  nav .btn-playlists{
+    color: var(--white);
+    margin-right: 1rem;
+    font-size: 1.55rem;
+    font-weight: 800;
+  }
+  
+  nav .icon{
+    display: none;
+  }
+  nav .page-tile{
+    font-size: 2rem;
+  }
 }
