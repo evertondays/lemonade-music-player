@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import RegisterMusic from './pages/RegisterMusic';
 import Playlists from './pages/Playlists';
 import RegisterPlaylist from './pages/RegisterPlaylist';
+import Playlist from './pages/Playlist';
 
 // Components
 import Navbar from './components/Navbar';
@@ -27,6 +28,9 @@ export default function Routes(){
 				</Route>
 				<Route path="/register-playlist">
 					<RegisterPlaylist />
+				</Route>
+				<Route path="/playlist">
+					<Playlist />
 				</Route>
 			</Switch>
 			<Player />
