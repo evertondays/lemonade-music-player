@@ -15,13 +15,14 @@ export default function PlaylistProvider(props){
 				setMedia(
 					{
 						...response.data[0],
-						file: `http://192.168.1.191:3333/song/${response.data[0].file}`
+						file: `http://192.168.1.191:3333/song/${response.data[0].file}`,
 					}
 				)
 			})
 			.catch((error) => {
 				console.log(error)
 			})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const [playlist, setPlaylist] = useState(
