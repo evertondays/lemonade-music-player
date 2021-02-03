@@ -13,7 +13,7 @@ import { useMedia } from '../context/MediaContext';
 import { usePlaylist } from '../context/PlaylistContext';
 
 function ListItem(props) {
-	const { player } = usePlayer();
+	const { player, setPlayer } = usePlayer();
 	const { media, setMedia } = useMedia();
 	const { playlist, setPlaylist } = usePlaylist();
 
@@ -27,6 +27,7 @@ function ListItem(props) {
 		}
 
 		setMedia(newMusic);
+		setPlayer({...player, firstMusic: false})
 
 		if(playlist.playlistId === props.playlistId){
 			setPlaylist({...playlist, music: props.id - 1})
@@ -44,6 +45,7 @@ function ListItem(props) {
 		} else {
 			setIsThisSong(false);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [media]);
 
 	function toggleOptions(){
