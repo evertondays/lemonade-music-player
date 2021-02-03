@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaTrashAlt, FaPlus } from 'react-icons/fa';
+import { FaTrashAlt, FaPlus, FaTimes } from 'react-icons/fa';
 
 // Styles
 import '../css/components/sub-menu-item.css';
 
 function ListItemMenu(props){
-	const [playlists, setPlaylist] = useState([]);
+
+	const playlistId = window.location.pathname.split('/')[2];
+	const [playlists, setPlaylists] = useState([]);
 
 	useEffect(() => {
+		// Pegando lista de playlist
 		axios.get('http://192.168.1.191:3333/all-playlists')
 			.then((response) => {
-				setPlaylist(response.data);
+				setPlaylists(response.data);
 			})
 			.catch((error) => {
 				console.log(error)
@@ -36,13 +39,23 @@ function ListItemMenu(props){
 		axios.post(`http://192.168.1.191:3333/add-song-playlist/${playlistId}/${props.id}`)
 			.then(async (response) => {
 				let responseData = await response.data;
-				console.log(responseData)
-
-				alert('Okay música adicionada ;)');
+				console.log(responseData);
 			})
 			.catch((error) => {
 				console.error(error);
 			})
+	}
+
+	function removePlaylist(){
+		if(typeof playlistId == 'undefined'){
+			alert('Você não pode remover dessa playlist')
+		} else {
+			axios.delete(`http://192.168.1.191:3333/remove-song-playlist/${playlistId}/${props.id}`)
+				.then(async (response) => {
+					let responseData = await response.data;
+					console.log(responseData);
+			})
+		}
 	}
 
 	return(
@@ -56,6 +69,7 @@ function ListItemMenu(props){
 					)
 				})
 			}
+			<div onClick={removePlaylist} className="item"><FaTimes className="icon" /> Remover da playlist</div>
 			<div onClick={deleteItem} className="delete item"><FaTrashAlt className="icon" /> Excluir</div>
 		</div>
 	);
