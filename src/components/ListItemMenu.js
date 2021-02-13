@@ -12,7 +12,7 @@ function ListItemMenu(props){
 
 	useEffect(() => {
 		// Pegando lista de playlist
-		axios.get('http://192.168.1.191:3333/all-playlists')
+		axios.get('http://localhost:3333/all-playlists')
 			.then((response) => {
 				setPlaylists(response.data);
 			})
@@ -22,7 +22,7 @@ function ListItemMenu(props){
 	}, [])
 
 	function deleteItem(){
-		var options = {method: 'DELETE', url: `http://192.168.1.191:3333/music/${props.id}`};
+		var options = {method: 'DELETE', url: `http://localhost:3333/music/${props.id}`};
 
 		axios.request(options)
 			.then(async (response) => {
@@ -36,7 +36,7 @@ function ListItemMenu(props){
 	}
 
 	function addMusicToPlaylist(playlistId){
-		axios.post(`http://192.168.1.191:3333/add-song-playlist/${playlistId}/${props.id}`)
+		axios.post(`http://localhost:3333/add-song-playlist/${playlistId}/${props.id}`)
 			.then(async (response) => {
 				let responseData = await response.data;
 				console.log(responseData);
@@ -50,7 +50,7 @@ function ListItemMenu(props){
 		if(typeof playlistId == 'undefined'){
 			alert('Você não pode remover dessa playlist')
 		} else {
-			axios.delete(`http://192.168.1.191:3333/remove-song-playlist/${playlistId}/${props.id}`)
+			axios.delete(`http://localhost:3333/remove-song-playlist/${playlistId}/${props.id}`)
 				.then(async (response) => {
 					let responseData = await response.data;
 					console.log(responseData);

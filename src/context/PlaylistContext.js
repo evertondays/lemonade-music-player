@@ -9,13 +9,13 @@ export default function PlaylistProvider(props){
 	const {setMedia} = useMedia();
 
 	useEffect(() => {
-		axios.get('http://192.168.1.191:3333/all')
+		axios.get('http://localhost:3333/all')
 			.then((response) => {
 				setPlaylist({data: response.data, music: 0, playlistId: 'all'})
 				setMedia(
 					{
 						...response.data[0],
-						file: `http://192.168.1.191:3333/song/${response.data[0].file}`
+						file: `http://localhost:3333/song/${response.data[0].file}`
 					}
 				)
 			})

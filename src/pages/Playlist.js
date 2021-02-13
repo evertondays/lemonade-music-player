@@ -28,7 +28,7 @@ function Playlist(props){
 
 	useEffect(() => {
 		// Pegando musicas
-		axios.get(`http://192.168.1.191:3333/playlist/${playlistId}`)
+		axios.get(`http://localhost:3333/playlist/${playlistId}`)
 		.then((response) => {
 			setMusicList(response.data);
 		}).catch(function (error) {
@@ -36,7 +36,7 @@ function Playlist(props){
 		});
 
 		// Pegando infos
-		axios.get(`http://192.168.1.191:3333/playlist-info/${playlistId}`)
+		axios.get(`http://localhost:3333/playlist-info/${playlistId}`)
 			.then((response) => {
 
 				setData(response.data[0])
@@ -59,7 +59,7 @@ function Playlist(props){
 		let message = window.confirm('Deseja deletar essa playlist?\nAs musicas permaneceram intactas');
 
 		if(message){
-			axios.delete(`http://192.168.1.191:3333/delete-playlist/${playlistId}`)
+			axios.delete(`http://localhost:3333/delete-playlist/${playlistId}`)
 				.then(async (response) => {
 					await response;
 					

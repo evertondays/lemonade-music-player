@@ -11,7 +11,7 @@ function Playlists(){
 	const [playlists, setPlaylists] = useState([]);
 
 	useEffect(() => {
-		axios.get('http://192.168.1.191:3333/all-playlists')
+		axios.get('http://localhost:3333/all-playlists')
 			.then((response) => {
 				setPlaylists(response.data);
 			})

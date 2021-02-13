@@ -111,7 +111,7 @@ function Player() {
 			} else {
 				setMedia({
 					...playlist.data[playlist.music + 1],
-					file: `http://192.168.1.191:3333/song/${playlist.data[playlist.music + 1].file}`
+					file: `http://localhost:3333/song/${playlist.data[playlist.music + 1].file}`
 				});
 
 				setPlayer({ ...player, firstMusic: false });
@@ -146,7 +146,7 @@ function Player() {
 		if ((playlist.music + 1) < playlist.data.length) {
 			setMedia({
 				...playlist.data[playlist.music + 1],
-				file: `http://192.168.1.191:3333/song/${playlist.data[playlist.music + 1].file}`
+				file: `http://localhost:3333/song/${playlist.data[playlist.music + 1].file}`
 			});
 
 			setPlayer({ ...player, firstMusic: false, playing: true });
@@ -164,7 +164,7 @@ function Player() {
 		if ((playlist.music - 1) >= 0) {
 			setMedia({
 				...playlist.data[playlist.music - 1],
-				file: `http://192.168.1.191:3333/song/${playlist.data[playlist.music - 1].file}`
+				file: `http://localhost:3333/song/${playlist.data[playlist.music - 1].file}`
 			});
 
 			setPlayer({ ...player, firstMusic: false, playing: true });
