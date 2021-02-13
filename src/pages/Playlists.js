@@ -8,12 +8,12 @@ import Item from '../components/PlaylistItem';
 import '../css/pages/playlists.css';
 
 function Playlists(){
-	const [playlists, setPlaylist] = useState([]);
+	const [playlists, setPlaylists] = useState([]);
 
 	useEffect(() => {
 		axios.get('http://192.168.1.191:3333/all-playlists')
 			.then((response) => {
-				setPlaylist(response.data);
+				setPlaylists(response.data);
 			})
 			.catch((error) => {
 				console.log(error)

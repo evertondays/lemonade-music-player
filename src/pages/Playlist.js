@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { FaEllipsisH } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaEllipsisH, FaTrashAlt } from 'react-icons/fa';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 // Components
 import Item from '../components/ListItem';
@@ -11,10 +12,19 @@ import '../css/pages/playlist.css';
 
 function Playlist(props){
 
+	// Id da playlist
 	const playlistId = window.location.pathname.split('/')[2];
 	
+	// Dados da musica
 	const [musicList, setMusicList] = useState();
 	const [data, setData] = useState({});
+
+	// Options
+	const overlay = useRef(null);
+	var menuIsVisible = false;
+
+	// History
+	const history = useHistory();
 
 	useEffect(() => {
 		// Pegando musicas
@@ -35,6 +45,30 @@ function Playlist(props){
 			});
 	}, [playlistId]);
 
+	function showPlaylistMenu(){
+		if(menuIsVisible){
+			overlay.current.style.display = 'none';
+		} else {
+			overlay.current.style.display = 'flex';
+		}
+
+		menuIsVisible = !menuIsVisible;
+	}
+
+	function deletePlaylist(){
+		let message = window.confirm('Deseja deletar essa playlist?\nAs musicas permaneceram intactas');
+
+		if(message){
+			axios.delete(`http://192.168.1.191:3333/delete-playlist/${playlistId}`)
+				.then(async (response) => {
+					await response;
+					
+					history.push('/playlists');
+				});
+
+		}
+	}
+
 	return(
 		<div className="page">
 			<div className="banner-wrapper" style={{backgroundImage: `url(${data.image})`}}>
@@ -50,12 +84,16 @@ function Playlist(props){
 				</dv>
 				<div className="right">
 					Opções
-					<button className="btn-options"><FaEllipsisH size={25} /></button>
+					<button onClick={showPlaylistMenu} className="btn-options"><FaEllipsisH size={25} /></button>
 				</div>
 
-				{/* <div className="options">
-					<div className="option"><FaTrashAlt />Deletar playlist</div>
-				</div> */}
+				<div ref={overlay} className="overlay"
+					style={{ display: 'none' }} onClick={showPlaylistMenu}
+				>
+					<div className="sub-menu">
+						<div onClick={deletePlaylist} className="item delete"><FaTrashAlt className="icon" />Deletar playlist</div>
+					</div>
+				</div>
 			</div>
 			
 			<table className="music-list">

@@ -57,6 +57,14 @@
   cursor: pointer;
 }
 
+.playlist-gif{
+  width: 13.3px;
+  height: auto;
+
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
 @media (max-width: 600px) {
   .album-th{
     display: none;
