@@ -2,6 +2,8 @@
 
 Um player de música criado com React, utilizando API Rest em NodeJS para o backend. Projeto criado para aprender um pouco mais do framework e do uso JavaScript no server-side.
 
+![Print do site](https://i.imgur.com/ky4FGBL.png)
+
 ###  Funcionalidades
 
 - Fácil navegação :rocket:
