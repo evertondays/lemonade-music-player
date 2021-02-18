@@ -9,7 +9,7 @@ Um player de música criado com React, utilizando API Rest em NodeJS para o back
 - Fácil navegação :rocket:
 -  Importação de arquivos .mp3 :musical_note:
 - Criação de playlists :bookmark_tabs:
-- Exclusão de arquivo:collision:
+- Exclusão de arquivo :collision:
 - Controles de som :headphones:
 
 ###  Instalação
